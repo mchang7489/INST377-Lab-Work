@@ -7,56 +7,40 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div>
-      <header><h1>Michael Chang's Labs For INST377</h1></header>
-      <div>
-        <div>
-          <h3>Albums Names</h3>
-          <ol>
-            <li>The College Dropout - Ye</li>
-            <li>My Beautiful Dark Twisted Fantasy - Ye</li>
-            <li>Graduation - Ye</li>
-            <li>Late Registration - Ye</li>
-            <li>Yeezus - Ye</li>
-          </ol>
-        </div>
-        <div>
-          <main>
-            <h3>Image Carousel</h3>
-            <div>
-              <img src="images/mochi.gif" />
-              <img src="images/mochi.jpg" />
-              <img src="images/mochi.png" />
-              <img src="images/mochi.svg" />
-              <div>
-                <p>
-                  The first image starting from the far left is a GIF image. GIFs are good for animations. 
-                  The second image located to the right of the GIF image is a JPG image. JPG are good for photos. 
-                  The third image from the right of the JPG image is a PNG image. PNGs are good for diagrams and icons. 
-                  The last image that is located to the right of the PNG image is an SVG image. SVG are a wonderful tool for responsive design.
-                </p>
+    <div class="wrapper">
+        <header class="header"><h1>Michael Chang's Labs For INST377</h1></header>
+        <div class="container">
+          <div class="left_section box">
+            <h2 class="subtitle">Albums Names</h2>
+            <ol class="box">
+              <li>The College Dropout - Ye</li>
+              <li>My Beautiful Dark Twisted Fantasy - Ye</li>
+              <li>Graduation - Ye</li>
+              <li>Late Registration - Ye</li>
+              <li>Yeezus - Ye</li>
+            </ol>
+          </div>
+          <div class="right_section box">
+              <h2 class="subtitle">Image Carousel</h2>
+              <div class="grid">
+                <img src="images/mochi.gif" />
+                <img src="images/mochi.jpg" />
+                <img src="images/mochi.png" />
+                <img src="images/mochi.svg" />
               </div>
-            </div>
-          </main>
+              <div class="box">
+              Very cute mochi in different graphical formats
+          </div>
+          </div>
         </div>
       </div>
-    </div>
-    <footer>
-      <a
-        href="http://github.com/mchang7489"
-        target="_blank"
-        rel="noopener noreferrer"
-        >mchang7489 Github Org</a
-      >
-    </footer>
-  </body>
-</html>
-
-Hook it up to CSS by including style.css in the <head> tag
-
-Then add CSS class names to your HTML to make it look like the lab pictures.
-For example: <div class="selector">
-
-You should not need to edit the CSS to do this, only the HTML.
-
-Don't forget to add an actual set of image descriptions to your image carousel.
+      <footer class="footer ">
+        <a
+          href="http://github.com/mchang7489"
+          target="_blank"
+          rel="noopener noreferrer"
+          >mchang7489 Github Org</a
+        >
+      </footer>
+    </body>
+  </html>
