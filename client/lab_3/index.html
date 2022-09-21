@@ -1,5 +1,57 @@
-<!--
-    Replace this with your working code from Lab 2, and include:
-    - The styles in this folder's `style.css`
-    - The script in script.js, which should be included via a `<script src="script.js" >` call before your closing </body> tag 
--->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Michael Chang's Labs</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="wrapper">
+        <header class="header"><h1>Michael Chang's Labs For INST377</h1></header>
+        <div class="container">
+          <div class="left_section box">
+            <h2 class="subtitle">Albums Names</h2>
+            <div class = "box">
+              <ol>
+                <li>The College Dropout - Ye</li>
+                <li>My Beautiful Dark Twisted Fantasy - Ye</li>
+                <li>Graduation - Ye</li>
+                <li>Late Registration - Ye</li>
+                <li>Yeezus - Ye</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="right_section box">
+              <h2>Image Carousel</h2>
+              <div class="carousel">
+                <button class="prev">prev</button>
+                  <div class="slides">
+                    <div class="carousel_item visible" ><img src="images/Album1.jpg" /></div>
+                    <div class="carousel_item hidden"><img src="images/Album2.jpg" /></div>
+                    <div class="carousel_item hidden"><img src="images/Album3.jpg" /></div>
+                    <div class="carousel_item hidden"><img src="images/Album4.jpg" /></div>
+                  </div>
+                  <button class="next">next</button>
+              </div>
+              <div class="box">
+                Kanye West's albums
+          </div>
+          </div>
+        </div>
+      </div>
+
+
+      <footer class="footer ">
+        GitHub Account:
+        <a
+          href="http://github.com/mchang7489"
+          target="_blank"
+          rel="noopener noreferrer"
+          >mchang7489 Github Org</a
+          >
+      </footer>
+      <script src="script.js" ></script>
+    </body>
+  </html>
