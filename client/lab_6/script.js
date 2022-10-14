@@ -11,6 +11,12 @@
     https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 */
 
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
+}
+
 function injectHTML(list) {
   console.log('fired injectHTML');
   /*
@@ -21,7 +27,6 @@ function injectHTML(list) {
     the usual ones are element.innerText and element.innerHTML
     Here's an article on the differences if you want to know more:
     https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent#differences_from_innertext
-
   ## What to do in this function
     - Accept a list of restaurant objects
     - using a .forEach method, inject a list element into your index.html for every element in the list
@@ -31,17 +36,20 @@ function injectHTML(list) {
 
 function processRestaurants(list) {
   console.log('fired restaurants list');
-
+  const range = [...Array(15).keys()];
+  const newArray = range.map((item) =>{
+    const index = getRandomIntInclusive(0, list.length);
+    return list[index];
+  });
+  return newArray;
   /*
     ## Process Data Separately From Injecting It
       This function should accept your 1,000 records
       then select 15 random records
       and return an object containing only the restaurant's name, category, and geocoded location
       So we can inject them using the HTML injection function
-
       You can find the column names by carefully looking at your single returned record
       https://data.princegeorgescountymd.gov/Health/Food-Inspection/umjn-t2iz
-
     ## What to do in this function:
 
     - Create an array of 15 empty elements (there are a lot of fun ways to do this, and also very basic ways)
@@ -62,7 +70,8 @@ async function mainEvent() {
 
   // the async keyword means we can make API requests
   const form = document.querySelector('.main_form'); // get your main form so you can do JS with it
-  const submit = document.querySelector('button[type="submit"]'); // get a reference to your submit button
+  const submit = document.querySelector('#get-resto'); // get a reference to your submit button
+  const loadAnimation = document.querySelector('.lds-ellipsis');
   submit.style.display = 'none'; // let your submit button disappear
 
   /*
@@ -70,7 +79,7 @@ async function mainEvent() {
     This next line goes to the request for 'GET' in the file at /server/routes/foodServiceRoutes.js
     It's at about line 27 - go have a look and see what we're retrieving and sending back.
    */
-  const results = await fetch('/api/foodServicesPG');
+  const results = await fetch('/api/foodServicePG');
   const arrayFromJson = await results.json(); // here is where we get the data from our request as JSON
 
   /*
@@ -79,7 +88,7 @@ async function mainEvent() {
     Dot notation is preferred in JS unless you have a good reason to use brackets
     The 'data' key, which we set at line 38 in foodServiceRoutes.js, contains all 1,000 records we need
   */
-  console.table(arrayFromJson.data);
+  // console.table(arrayFromJson.data);
 
   // in your browser console, try expanding this object to see what fields are available to work with
   // for example: arrayFromJson.data[0].name, etc
@@ -92,6 +101,9 @@ async function mainEvent() {
   if (arrayFromJson.data?.length > 0) { // the question mark in this means "if this is set at all"
     submit.style.display = 'block'; // let's turn the submit button back on by setting it to display as a block when we have data available
 
+    loadAnimation.classList.remove('lds-ellipsis');
+    loadAnimation.classList.add('lds-ellipsis_hidden');
+
     // And here's an eventListener! It's listening for a "submit" button specifically being clicked
     // this is a synchronous event event, because we already did our async request above, and waited for it to resolve
     form.addEventListener('submit', (submitEvent) => {
@@ -100,6 +112,7 @@ async function mainEvent() {
 
       // This constant will have the value of your 15-restaurant collection when it processes
       const restaurantList = processRestaurants(arrayFromJson.data);
+      console.log(restaurantList);
 
       // And this function call will perform the "side effect" of injecting the HTML list for you
       injectHTML(restaurantList);
