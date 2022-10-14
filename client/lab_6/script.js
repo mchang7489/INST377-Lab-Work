@@ -19,6 +19,17 @@ function getRandomIntInclusive(min, max) {
 
 function injectHTML(list) {
   console.log('fired injectHTML');
+  const target = document.querySelector('#resturant_list');
+  target.innerHTML = '';
+
+  const listEl = document.createElement('ol');
+  target.appendChild(listEl);
+  list.forEach((item) =>{
+    const el = document.createElement('li');
+    el.innerText = item.name;
+    listEl.appendChild(el);
+  });
+
   /*
   ## JS and HTML Injection
     There are a bunch of methods to inject text or HTML into a document using JS
@@ -27,6 +38,7 @@ function injectHTML(list) {
     the usual ones are element.innerText and element.innerHTML
     Here's an article on the differences if you want to know more:
     https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent#differences_from_innertext
+
   ## What to do in this function
     - Accept a list of restaurant objects
     - using a .forEach method, inject a list element into your index.html for every element in the list
